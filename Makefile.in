@@ -1,0 +1,33 @@
+Native = ${Benchmark}
+WASM = ${Benchmark}.wasm
+
+SRC = $(wildcard ${SRCDIR}/*.${SRCSUFFIX})
+OBJ = $(SRC:.${SRCSUFFIX}=.o)
+
+CLANG = clang
+
+ifeq (${SRCSUFFIX}, $(filter ${SRCSUFFIX}, cc cpp))
+    CLANG = clang++
+endif
+
+CC = ${HOME}/llvm/llvm-10.0.0.prefix/bin/${CLANG}
+
+OPT=-O2
+
+WASMCC = ${HOME}/wasi-sdk/wasi-sdk-10.0/bin/${CLANG} \
+         --sysroot ${HOME}/wasi-sdk/wasi-sdk-10.0/share/wasi-sysroot
+
+all: ${Native} ${WASM}
+
+%.o: %.${SRCSUFFIX}
+	${CC} ${CFLAGS} ${OPT} ${CINCLUDE} -c $< -o $@
+
+${Native}: ${OBJ}
+	${CC} ${CFLAGS} ${OPT} $^ ${LDFLAGS} -o $@
+
+${WASM}: ${SRC}
+	${WASMCC} ${CFLAGS} ${OPT} ${CINCLUDE} $^ -o $@
+
+clean:
+	@echo "Cleaning up..."
+	rm -rf ${OBJ} ${Native} ${WASM} ${TEMPFILE} *.cwasm output_*
