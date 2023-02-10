@@ -6,7 +6,7 @@ MeasureMem=false
 
 MeasurePerf=false
 
-BenchRoot="$HOME/WasmBench"
+BenchRoot="$HOME/WABench"
 
 CommonScript="$BenchRoot/common.sh"
 
