@@ -10,6 +10,6 @@ If you see any license/copyright issues, please let us know. We will remove the 
 
 [How Far We've Come - A Characterization Study of Standalone WebAssembly Runtimes](https://cobweb.cs.uga.edu/~wenwen/papers/iiswc2022.pdf)
 
-Wenwen Wang
+[Wenwen Wang](https://cobweb.cs.uga.edu/~wenwen)
 
-IISWC 2022
+[IISWC 2022](http://www.iiswc.org/iiswc2022)
